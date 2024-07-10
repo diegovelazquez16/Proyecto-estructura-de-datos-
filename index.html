@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe-UP</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="Imagenes/Icon_Cafe-UP.jpeg">
+</head>
+<body>
+    <nav class="navbar">
+        <img src="Imagenes/IDS.jpg" alt="Left Image" id="IDS">
+        <h1>Cafe-UP</h1>
+        <img src="Imagenes/UP_Logo.jpg" alt="Right Image" id="Logo">
+    </nav>
+
+    <div id="inicio" class="container">
+        <h2>Buen día usuario</h2>
+        <p>Bienvenido a su programa para inventariar bebidas</p>
+    </div>
+    <div id="agregar" class="container">
+        <h2>Agregar bebida</h2>
+        <div class="form__group field">
+            <input type="text" class="form__field" placeholder="Nombre de la bebida" name="nombre" id="nombre" required />
+            <label for="nombre" class="form__label">Nombre de la bebida</label>
+        </div>
+        <div class="form__group field">
+            <input type="number" class="form__field" placeholder="Precio" name="precio" id="precio" required />
+            <label for="precio" class="form__label">Precio</label>
+        </div>
+        <div class="form__group field">
+            <input type="number" class="form__field" placeholder="Cantidad" name="cantidad" id="cantidad" required />
+            <label for="cantidad" class="form__label">Cantidad</label>
+        </div>
+        <div class="form__group field">
+            <input type="number" class="form__field" placeholder="Mililitros" name="mililitros" id="mililitros" required />
+            <label for="mililitros" class="form__label">Mililitros</label>
+        </div>
+        <button class="button-18" id="botonAgregar">Agregar bebida</button>
+    </div>
+    <div id="buscar" class="container">
+        <h2>Buscar bebida</h2>
+        <div class="form__group field">
+            <input type="text" class="form__field" placeholder="Nombre de la bebida a buscar" name="nombreBuscar" id="nombreBuscar" required />
+            <label for="nombreBuscar" class="form__label">Nombre de la bebida a buscar</label>
+        </div>
+        <button class="button-18" id="botonBuscar">Buscar bebida</button>
+        <div id="resultadoBusqueda"></div>
+    </div>
+    <div id="precioMinimo" class="container">
+        <h2>Precio mínimo</h2>
+        <button class="button-18" id="botonPrecioMinimo">Buscar bebida con precio mínimo</button>
+        <div id="resultadoPrecioMinimo"></div>
+    </div>
+    <div id="precioMaximo" class="container">
+        <h2>Precio máximo</h2>
+        <button class="button-18" id="botonPrecioMaximo">Buscar bebida con precio máximo</button>
+        <div id="resultadoPrecioMaximo"></div>
+    </div>
+    <div id="todas" class="container">
+        <h2>Imprimir todas las bebidas</h2>
+        <button class="button-18" id="botonImprimirTodas">Imprimir todas las bebidas</button>
+        <div id="resultadoTodasBebidas"></div>
+    </div>
+    <div id="modalFuncional" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <p>Bebida agregada con éxito</p>
+        </div>
+    </div>
+    <script type="module" src="JavaScript/app.js"></script>
+</body>
+</html>
