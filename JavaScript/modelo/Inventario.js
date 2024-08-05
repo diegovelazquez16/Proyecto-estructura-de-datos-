@@ -1,30 +1,29 @@
 import Bebida from './Bebida.js';
+import BST from './BST.js';
 
 class Inventario {
     constructor() {
-        this.bebidas = [];
+        this.arbol = new BST();
     }
 
     agregarBebida(bebida) {
-        this.bebidas.push(bebida);
+        this.arbol.agregar(bebida);
     }
 
     buscarBebida(nombre) {
-        return this.bebidas.find(bebida => bebida.nombre.toLowerCase() === nombre.toLowerCase());
+        return this.arbol.buscar(nombre);
     }
 
     obtenerPrecioMinimo() {
-        if (this.bebidas.length === 0) return null;
-        return this.bebidas.reduce((min, bebida) => bebida.precio < min.precio ? bebida : min);
+        return this.arbol.obtenerPrecioMinimo();
     }
 
     obtenerPrecioMaximo() {
-        if (this.bebidas.length === 0) return null;
-        return this.bebidas.reduce((max, bebida) => bebida.precio > max.precio ? bebida : max);
+        return this.arbol.obtenerPrecioMaximo();
     }
 
     obtenerTodasLasBebidas() {
-        return this.bebidas;
+        return this.arbol.obtenerTodasLasBebidas();
     }
 }
 
