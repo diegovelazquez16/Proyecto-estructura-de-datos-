@@ -1,6 +1,6 @@
 class Nodo {
-    constructor(bebida) {
-        this.bebida = bebida;
+    constructor(dato) {
+        this.dato = dato;
         this.izquierda = null;
         this.derecha = null;
     }

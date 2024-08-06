@@ -1,11 +1,4 @@
-class Nodo {
-    constructor(dato) {
-        this.dato = dato;
-        this.izquierda = null;
-        this.derecha = null;
-    }
-}
-
+import Nodo from './Nodo.js';
 class BST {
     constructor() {
         this.raiz = null;
