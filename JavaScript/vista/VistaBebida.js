@@ -5,34 +5,40 @@ class VistaBebida {
         this.botonPrecioMinimo = document.getElementById('botonPrecioMinimo');
         this.botonPrecioMaximo = document.getElementById('botonPrecioMaximo');
         this.botonImprimirTodas = document.getElementById('botonImprimirTodas');
+
+        this.nombre = document.getElementById('nombre');
+        this.precio = document.getElementById('precio');
+        this.cantidad = document.getElementById('cantidad');
+        this.mililitros = document.getElementById('mililitros');
+        this.nombreBuscar = document.getElementById('nombreBuscar');
+        
+        this.resultadoBusqueda = document.getElementById('resultadoBusqueda');
+        this.resultadoPrecioMinimo = document.getElementById('resultadoPrecioMinimo');
+        this.resultadoPrecioMaximo = document.getElementById('resultadoPrecioMaximo');
+        this.resultadoTodasBebidas = document.getElementById('resultadoTodasBebidas');
+        
         this.modal = document.getElementById('modalFuncional');
-        this.modalClose = document.getElementsByClassName('modal-close')[0];
+        this.modalClose = document.querySelector('.modal-close');
 
         this.modalClose.addEventListener('click', () => {
             this.modal.style.display = 'none';
-        });
-
-        window.addEventListener('click', (event) => {
-            if (event.target == this.modal) {
-                this.modal.style.display = 'none';
-            }
         });
     }
 
     bindAgregarBebida(handler) {
         this.botonAgregar.addEventListener('click', () => {
-            const nombre = document.getElementById('nombre').value;
-            const precio = parseFloat(document.getElementById('precio').value);
-            const cantidad = parseInt(document.getElementById('cantidad').value, 10);
-            const mililitros = parseInt(document.getElementById('mililitros').value, 10);
-            handler(nombre, precio, cantidad, mililitros);
+            handler(
+                this.nombre.value,
+                parseFloat(this.precio.value),
+                parseInt(this.cantidad.value),
+                parseFloat(this.mililitros.value)
+            );
         });
     }
 
     bindBuscarBebida(handler) {
         this.botonBuscar.addEventListener('click', () => {
-            const nombre = document.getElementById('nombreBuscar').value;
-            handler(nombre);
+            handler(this.nombreBuscar.value);
         });
     }
 
@@ -55,31 +61,43 @@ class VistaBebida {
     }
 
     mostrarResultadoBusqueda(bebida) {
-        const resultadoBusqueda = document.getElementById('resultadoBusqueda');
-        resultadoBusqueda.innerHTML = bebida
-            ? `${bebida.nombre} - $${bebida.precio} - ${bebida.cantidad} unidades - ${bebida.mililitros} mL`
-            : 'Bebida no encontrada';
+        this.resultadoBusqueda.innerHTML = bebida ? `
+            <p>Nombre: ${bebida.nombre}</p>
+            <p>Precio: ${bebida.precio}</p>
+            <p>Cantidad: ${bebida.cantidad}</p>
+            <p>Mililitros: ${bebida.mililitros}</p>
+        ` : '<p>Bebida no encontrada</p>';
     }
 
     mostrarResultadoPrecioMinimo(bebida) {
-        const resultadoPrecioMinimo = document.getElementById('resultadoPrecioMinimo');
-        resultadoPrecioMinimo.innerHTML = bebida
-            ? `${bebida.nombre} - $${bebida.precio} - ${bebida.cantidad} unidades - ${bebida.mililitros} mL`
-            : 'No hay bebidas disponibles';
+        this.resultadoPrecioMinimo.innerHTML = bebida ? `
+            <p>Nombre: ${bebida.nombre}</p>
+            <p>Precio: ${bebida.precio}</p>
+            <p>Cantidad: ${bebida.cantidad}</p>
+            <p>Mililitros: ${bebida.mililitros}</p>
+        ` : '<p>No hay bebidas en el inventario</p>';
     }
 
     mostrarResultadoPrecioMaximo(bebida) {
-        const resultadoPrecioMaximo = document.getElementById('resultadoPrecioMaximo');
-        resultadoPrecioMaximo.innerHTML = bebida
-            ? `${bebida.nombre} - $${bebida.precio} - ${bebida.cantidad} unidades - ${bebida.mililitros} mL`
-            : 'No hay bebidas disponibles';
+        this.resultadoPrecioMaximo.innerHTML = bebida ? `
+            <p>Nombre: ${bebida.nombre}</p>
+            <p>Precio: ${bebida.precio}</p>
+            <p>Cantidad: ${bebida.cantidad}</p>
+            <p>Mililitros: ${bebida.mililitros}</p>
+        ` : '<p>No hay bebidas en el inventario</p>';
     }
 
     mostrarTodasBebidas(bebidas) {
-        const resultadoTodasBebidas = document.getElementById('resultadoTodasBebidas');
-        resultadoTodasBebidas.innerHTML = bebidas.map(bebida => 
-            `${bebida.nombre} - $${bebida.precio} - ${bebida.cantidad} unidades - ${bebida.mililitros} mL`
-        ).join('<br>');
+        this.resultadoTodasBebidas.innerHTML = '';
+        for (const bebida of bebidas) {
+            this.resultadoTodasBebidas.innerHTML += `
+                <p>Nombre: ${bebida.nombre}</p>
+                <p>Precio: ${bebida.precio}</p>
+                <p>Cantidad: ${bebida.cantidad}</p>
+                <p>Mililitros: ${bebida.mililitros}</p>
+                <hr>
+            `;
+        }
     }
 
     mostrarModalExito() {

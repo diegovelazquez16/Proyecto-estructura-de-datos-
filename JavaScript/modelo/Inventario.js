@@ -3,27 +3,30 @@ import BST from './BST.js';
 
 class Inventario {
     constructor() {
-        this.arbol = new BST();
+        this.bebidas = new BST();
     }
 
     agregarBebida(bebida) {
-        this.arbol.agregar(bebida);
+        this.bebidas.insertar(bebida);
     }
 
     buscarBebida(nombre) {
-        return this.arbol.buscar(nombre);
+        const bebida = new Bebida(nombre, null, null, null);
+        return this.bebidas.buscar(bebida);
     }
 
     obtenerPrecioMinimo() {
-        return this.arbol.obtenerPrecioMinimo();
+        const minNodo = this.bebidas.obtenerNodoMinimo();
+        return minNodo ? minNodo.dato : null;
     }
 
     obtenerPrecioMaximo() {
-        return this.arbol.obtenerPrecioMaximo();
+        const maxNodo = this.bebidas.obtenerNodoMaximo();
+        return maxNodo ? maxNodo.dato : null;
     }
 
     obtenerTodasLasBebidas() {
-        return this.arbol.obtenerTodasLasBebidas();
+        return this.bebidas.inOrden();
     }
 }
 

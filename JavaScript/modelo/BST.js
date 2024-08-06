@@ -1,82 +1,83 @@
-import Nodo from './Nodo.js';
+class Nodo {
+    constructor(dato) {
+        this.dato = dato;
+        this.izquierda = null;
+        this.derecha = null;
+    }
+}
 
 class BST {
     constructor() {
         this.raiz = null;
     }
 
-    agregar(bebida) {
-        const nuevoNodo = new Nodo(bebida);
+    insertar(dato) {
+        const nuevoNodo = new Nodo(dato);
         if (this.raiz === null) {
             this.raiz = nuevoNodo;
         } else {
-            this.agregarNodo(this.raiz, nuevoNodo);
+            this.insertarNodo(this.raiz, nuevoNodo);
         }
     }
 
-    agregarNodo(nodo, nuevoNodo) {
-        if (nuevoNodo.bebida.nombre.toLowerCase() < nodo.bebida.nombre.toLowerCase()) {
+    insertarNodo(nodo, nuevoNodo) {
+        if (nuevoNodo.dato.nombre < nodo.dato.nombre) {
             if (nodo.izquierda === null) {
                 nodo.izquierda = nuevoNodo;
             } else {
-                this.agregarNodo(nodo.izquierda, nuevoNodo);
+                this.insertarNodo(nodo.izquierda, nuevoNodo);
             }
         } else {
             if (nodo.derecha === null) {
                 nodo.derecha = nuevoNodo;
             } else {
-                this.agregarNodo(nodo.derecha, nuevoNodo);
+                this.insertarNodo(nodo.derecha, nuevoNodo);
             }
         }
     }
 
-    buscar(nombre) {
-        return this.buscarNodo(this.raiz, nombre.toLowerCase());
+    buscar(dato) {
+        return this.buscarNodo(this.raiz, dato);
     }
 
-    buscarNodo(nodo, nombre) {
+    buscarNodo(nodo, dato) {
         if (nodo === null) {
             return null;
         }
-        if (nombre === nodo.bebida.nombre.toLowerCase()) {
-            return nodo.bebida;
-        }
-        if (nombre < nodo.bebida.nombre.toLowerCase()) {
-            return this.buscarNodo(nodo.izquierda, nombre);
+        if (dato.nombre < nodo.dato.nombre) {
+            return this.buscarNodo(nodo.izquierda, dato);
+        } else if (dato.nombre > nodo.dato.nombre) {
+            return this.buscarNodo(nodo.derecha, dato);
         } else {
-            return this.buscarNodo(nodo.derecha, nombre);
+            return nodo.dato;
         }
     }
 
-    obtenerPrecioMinimo() {
-        if (this.raiz === null) return null;
-        let nodoActual = this.raiz;
-        while (nodoActual.izquierda !== null) {
-            nodoActual = nodoActual.izquierda;
+    obtenerNodoMinimo(nodo = this.raiz) {
+        while (nodo && nodo.izquierda !== null) {
+            nodo = nodo.izquierda;
         }
-        return nodoActual.bebida;
+        return nodo;
     }
 
-    obtenerPrecioMaximo() {
-        if (this.raiz === null) return null;
-        let nodoActual = this.raiz;
-        while (nodoActual.derecha !== null) {
-            nodoActual = nodoActual.derecha;
+    obtenerNodoMaximo(nodo = this.raiz) {
+        while (nodo && nodo.derecha !== null) {
+            nodo = nodo.derecha;
         }
-        return nodoActual.bebida;
+        return nodo;
     }
 
-    obtenerTodasLasBebidas() {
-        const bebidas = [];
-        this.inOrden(this.raiz, bebidas);
-        return bebidas;
+    inOrden() {
+        let resultado = [];
+        this.inOrdenRecursivo(this.raiz, resultado);
+        return resultado;
     }
 
-    inOrden(nodo, bebidas) {
+    inOrdenRecursivo(nodo, resultado) {
         if (nodo !== null) {
-            this.inOrden(nodo.izquierda, bebidas);
-            bebidas.push(nodo.bebida);
-            this.inOrden(nodo.derecha, bebidas);
+            this.inOrdenRecursivo(nodo.izquierda, resultado);
+            resultado.push(nodo.dato);
+            this.inOrdenRecursivo(nodo.derecha, resultado);
         }
     }
 }
