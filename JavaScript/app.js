@@ -7,3 +7,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const vistaBebida = new VistaBebida();
     new ControladorInventario(inventario, vistaBebida);
 });
+//ok

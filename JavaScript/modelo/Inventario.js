@@ -28,3 +28,4 @@ class Inventario {
 }
 
 export default Inventario;
+//ok

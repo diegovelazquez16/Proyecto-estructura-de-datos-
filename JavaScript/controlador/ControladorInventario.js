@@ -42,3 +42,4 @@ class ControladorInventario {
 }
 
 export default ControladorInventario;
+//ok
